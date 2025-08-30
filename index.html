@@ -1,194 +1,169 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8"> <!-- Define a codificação de caracteres para português -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Faz a página responsiva -->
-    <meta name="description" content="Clone simplificado do YouTube para estudos">
-    <title>Maeltube</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #000000;
-            color: #ffffff;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Clone simplificado do YouTube para estudos">
+<title>Maeltube</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #000;
+        color: #fff;
+    }
 
-        header {
-            background-color: #ff0000;
-            color: #ffffff;
-            padding: 1rem 2rem;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
+    header {
+        background-color: #ff0000;
+        padding: 1rem 2rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
 
-        header .logo {
-            font-size: 1.5rem;
-            font-weight: bold;
-            margin-right: 15px;
-        }
+    header .logo {
+        font-size: 1.5rem;
+        font-weight: bold;
+        margin-right: 15px;
+    }
 
-        header nav ul {
-            list-style: none;
-            display: flex;
-            margin: 0;
-            padding: 0;
-        }
+    header nav ul {
+        list-style: none;
+        display: flex;
+        margin: 0;
+        padding: 0;
+    }
 
-        header nav ul li {
-            margin: 0 10px;
-        }
+    header nav ul li {
+        margin: 0 10px;
+    }
 
-        header nav ul li a {
-            color: white;
-            text-decoration: none;
-            font-weight: bold;
-        }
+    header nav ul li a {
+        color: white;
+        text-decoration: none;
+        font-weight: bold;
+    }
 
-        .search-bar {
-            display: flex;
-            align-items: center;
-        }
+    .search-bar {
+        display: flex;
+        align-items: center;
+    }
 
-        .search-bar input {
-            padding: 0.5rem;
-            font-size: 1rem;
-            border: 1px solid #ccc;
-            border-radius: 3px;
-            margin-right: 5px;
-        }
+    .search-bar input {
+        padding: 0.5rem;
+        font-size: 1rem;
+        border: 1px solid #ccc;
+        border-radius: 3px;
+    }
 
-        .search-bar button {
-            padding: 0.5rem 1rem;
-            background-color: #333;
-            color: white;
-            border: none;
-            border-radius: 3px;
-            cursor: pointer;
-        }
+    main {
+        padding: 2rem;
+    }
 
-        main {
-            padding: 2rem;
-        }
+    .video-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 1.5rem;
+    }
 
-        .video-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 1.5rem;
-        }
+    .video-card {
+        background-color: #fdfdfd;
+        border-radius: 5px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+        color: #000;
+    }
 
-        .video-card {
-            background-color: #fdfdfd;
-            border-radius: 5px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            overflow: hidden;
-            color: #000000;
-        }
+    .video-card iframe {
+        width: 100%;
+        height: 200px;
+    }
 
-        .video-card iframe {
-            width: 100%;
-            height: 200px;
-        }
+    .video-card .info {
+        padding: 1rem;
+    }
 
-        .video-card .info {
-            padding: 1rem;
-        }
+    .video-card .info h3 {
+        margin: 0 0 0.5rem 0;
+        font-size: 1.1rem;
+    }
 
-        .video-card .info h3 {
-            margin: 0 0 0.5rem 0;
-            font-size: 1.1rem;
-        }
+    .video-card .info p {
+        margin: 0;
+        font-size: 0.9rem;
+    }
 
-        .video-card .info p {
-            margin: 0;
-            font-size: 0.9rem;
-        }
+    footer {
+        background-color: #333;
+        color: #fff;
+        text-align: center;
+        padding: 1rem 0;
+        margin-top: 2rem;
+    }
 
-        footer {
-            background-color: #333;
-            color: #ffffff;
-            text-align: center;
-            padding: 1rem 0;
-            margin-top: 2rem;
-        }
-
-        footer p {
-            margin: 0;
-        }
-    </style>
+    footer p {
+        margin: 0;
+    }
+</style>
 </head>
 <body>
-    <!-- Cabeçalho -->
-    <header>
-        <div class="logo">Maeltube</div>
-        <div class="search-bar">
-            <!-- Adicionei id no input para o script pegar -->
-            <input type="text" id="searchInput" placeholder="Pesquisar...">
-            <!-- Adicionei onclick para chamar a função de busca -->
-            <button onclick="searchVideos()">Buscar</button>
-        </div>
-        <nav>
-            <ul>
-                <li><a href="#home">Início</a></li>
-                <li><a href="#trending">Em alta</a></li>
-                <li><a href="#inscricoes">Inscrições</a></li>
-            </ul>
-        </nav>
-    </header>
+<header>
+    <div class="logo">Maeltube</div>
+    <div class="search-bar">
+        <input type="text" id="searchInput" placeholder="Pesquisar...">
+    </div>
+    <nav>
+        <ul>
+            <li><a href="#home">Início</a></li>
+            <li><a href="#trending">Em alta</a></li>
+            <li><a href="#inscricoes">Inscrições</a></li>
+        </ul>
+    </nav>
+</header>
 
-    <!-- Conteúdo principal -->
-    <main>
-        <h2>Recomendados</h2>
-        <div class="video-grid">
-            <!-- Vídeo 1 -->
-            <div class="video-card">
-                <iframe src="https://www.youtube.com/embed/XXYlFuWEuKI" 
-                        title="The Weeknd" frameborder="0" 
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                        allowfullscreen></iframe>
-                <div class="info">
-                    <h3>The Weeknd</h3>
-                    <p>Maelvideos</p>
-                </div>
+<main>
+    <h2>Recomendados</h2>
+    <div class="video-grid">
+        <!-- Vídeo 1 -->
+        <div class="video-card">
+            <iframe src="https://www.youtube.com/embed/XXYlFuWEuKI" title="The Weeknd" frameborder="0" 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <div class="info">
+                <h3>The Weeknd</h3>
+                <p>Maelvideos</p>
             </div>
-
-            <!-- Vídeo 2 -->
-            <div class="video-card">
-                <iframe src="https://www.youtube.com/embed/ZbZSe6N_BXs" 
-                        title="Pharrell Williams" frameborder="0" 
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                        allowfullscreen></iframe>
-                <div class="info">
-                    <h3>Pharrell Williams</h3>
-                    <p>Maelvideos</p>
-                </div>
-            </div>
-
-            <!-- Adicione outros vídeos aqui seguindo o mesmo padrão -->
         </div>
-    </main>
 
-    <!-- Rodapé -->
-    <footer>
-        <p>&copy; 2024 Maeltube. Todos os direitos reservados.</p>
-    </footer>
+        <!-- Vídeo 2 -->
+        <div class="video-card">
+            <iframe src="https://www.youtube.com/embed/ZbZSe6N_BXs" title="Pharrell Williams" frameborder="0" 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <div class="info">
+                <h3>Pharrell Williams</h3>
+                <p>Maelvideos</p>
+            </div>
+        </div>
 
-    <!-- Script da busca -->
-    <script>
-        function searchVideos() {
-            const input = document.getElementById('searchInput').value.toLowerCase(); // pega o que o usuário digitou
-            const videos = document.querySelectorAll('.video-card'); // pega todos os cards
+        <!-- Adicione outros vídeos seguindo o mesmo padrão -->
+    </div>
+</main>
 
-            videos.forEach(video => {
-                const title = video.querySelector('h3').textContent.toLowerCase(); // pega título do vídeo
-                if(title.includes(input)) {
-                    video.style.display = 'block'; // mostra se combinar
-                } else {
-                    video.style.display = 'none'; // esconde se não combinar
-                }
-            });
-        }
-    </script>
+<footer>
+    <p>&copy; 2024 Maeltube. Todos os direitos reservados.</p>
+</footer>
+
+<script>
+const searchInput = document.getElementById('searchInput');
+const videoCards = document.querySelectorAll('.video-card');
+
+searchInput.addEventListener('input', () => {
+    const filter = searchInput.value.toLowerCase();
+    videoCards.forEach(card => {
+        const title = card.querySelector('h3').textContent.toLowerCase();
+        card.style.display = title.includes(filter) ? 'block' : 'none';
+    });
+});
+</script>
 </body>
 </html>
