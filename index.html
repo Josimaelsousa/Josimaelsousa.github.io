@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8"> <!-- Define a codificação de caracteres para português -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Faz a página responsiva -->
     <meta name="description" content="Clone simplificado do YouTube para estudos">
     <title>Maeltube</title>
     <style>
@@ -10,8 +10,8 @@
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #000000; /* fundo do site */
-            color: #ffffff; /* texto padrão branco */
+            background-color: #000000;
+            color: #ffffff;
         }
 
         header {
@@ -83,7 +83,7 @@
             border-radius: 5px;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
             overflow: hidden;
-            color: #000000; /* cor do texto dentro do card */
+            color: #000000;
         }
 
         .video-card iframe {
@@ -119,11 +119,14 @@
     </style>
 </head>
 <body>
+    <!-- Cabeçalho -->
     <header>
         <div class="logo">Maeltube</div>
         <div class="search-bar">
-            <input type="text" placeholder="Pesquisar...">
-            <button>Buscar</button>
+            <!-- Adicionei id no input para o script pegar -->
+            <input type="text" id="searchInput" placeholder="Pesquisar...">
+            <!-- Adicionei onclick para chamar a função de busca -->
+            <button onclick="searchVideos()">Buscar</button>
         </div>
         <nav>
             <ul>
@@ -134,13 +137,13 @@
         </nav>
     </header>
 
+    <!-- Conteúdo principal -->
     <main>
         <h2>Recomendados</h2>
         <div class="video-grid">
             <!-- Vídeo 1 -->
             <div class="video-card">
-                <iframe src="https://www.youtube.com/embed/XXYlFuWEuKI
-" 
+                <iframe src="https://www.youtube.com/embed/XXYlFuWEuKI" 
                         title="The Weeknd" frameborder="0" 
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
                         allowfullscreen></iframe>
@@ -162,83 +165,30 @@
                 </div>
             </div>
 
-            <!-- Vídeo 3 -->
-            <div class="video-card">
-                <iframe src="https://www.youtube.com/embed/dtYKIBAF7n8" 
-                        title="Davi Sacer - Venha o Teu Reino" frameborder="0" 
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                        allowfullscreen></iframe>
-                <div class="info">
-                    <h3>Davi Sacer - Venha o Teu Reino</h3>
-                    <p>Maelvideos</p>
-                </div>
-            </div>
-
-            <!-- Vídeo 4 -->
-            <div class="video-card">
-                <iframe src="https://www.youtube.com/embed/nSDgHBxUbVQ" 
-                        title="Ed Sheeran - Photograph" frameborder="0" 
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                        allowfullscreen></iframe>
-                <div class="info">
-                    <h3>Ed Sheeran - Photograph</h3>
-                    <p>Maelvideos</p>
-                </div>
-            </div>
-
-            <!-- Vídeo 5 -->
-            <div class="video-card">
-                <iframe src="https://www.youtube.com/embed/mNEUkkoUoIA" 
-                        title="OneRepublic - I Ain't Worried" frameborder="0" 
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                        allowfullscreen></iframe>
-                <div class="info">
-                    <h3>OneRepublic - I Ain't Worried</h3>
-                    <p>Maelvideos</p>
-                </div>
-            </div>
-
-            <!-- Vídeo 6 -->
-            <div class="video-card">
-                <iframe src="https://www.youtube.com/embed/ApXoWvfEYVU" 
-                        title="Post Malone, Swae Lee - Sunflower" frameborder="0" 
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                        allowfullscreen></iframe>
-                <div class="info">
-                    <h3>Post Malone, Swae Lee - Sunflower</h3>
-                    <p>Maelvideos</p>
-                </div>
-            </div>
-
-            <!-- Vídeo 7 -->
-            <div class="video-card">
-                <iframe src="https://www.youtube.com/embed/LYsaKn8FRhc" 
-                        title="Preto no Branco - Ninguém Explica Deus" frameborder="0" 
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                        allowfullscreen></iframe>
-                <div class="info">
-                    <h3>Preto no Branco - Ninguém Explica Deus</h3>
-                    <p>Maelvideos</p>
-                </div>
-            </div>
-
-            <!-- Vídeo 8 -->
-            <div class="video-card">
-                <iframe src="https://www.youtube.com/embed/F2RnxZnubCM" 
-                        title="Titanic • My Heart Will Go On • Celine Dion" frameborder="0" 
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                        allowfullscreen></iframe>
-                <div class="info">
-                    <h3>Titanic • My Heart Will Go On • Celine Dion</h3>
-                    <p>Maelvideos</p>
-                </div>
-            </div>
-
+            <!-- Adicione outros vídeos aqui seguindo o mesmo padrão -->
         </div>
     </main>
 
+    <!-- Rodapé -->
     <footer>
         <p>&copy; 2024 Maeltube. Todos os direitos reservados.</p>
     </footer>
+
+    <!-- Script da busca -->
+    <script>
+        function searchVideos() {
+            const input = document.getElementById('searchInput').value.toLowerCase(); // pega o que o usuário digitou
+            const videos = document.querySelectorAll('.video-card'); // pega todos os cards
+
+            videos.forEach(video => {
+                const title = video.querySelector('h3').textContent.toLowerCase(); // pega título do vídeo
+                if(title.includes(input)) {
+                    video.style.display = 'block'; // mostra se combinar
+                } else {
+                    video.style.display = 'none'; // esconde se não combinar
+                }
+            });
+        }
+    </script>
 </body>
 </html>
