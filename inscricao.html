@@ -4,61 +4,20 @@
   <meta charset="UTF-8">
   <title>Formulário de Inscrição</title>
 
-  <!-- Firebase compatível com navegador -->
   <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
-
-  <!-- JS separado -->
-  <script src="script.js" defer></script>
+  <script src="inscricao.js" defer></script>
 
   <style>
     body {
-      font-family: Arial, sans-serif;
       background-color: #000; /* fundo preto */
-      color: #fff; /* texto branco */
+      color: #ebebeb; /* texto branco */
+      font-family: Arial, sans-serif;
       padding: 20px;
     }
-
-    h2 {
-      color: #ff0000; /* Vermelho tipo YouTube */
+     h2 {
+      color: red; /* título em vermelho */
       font-weight: bold;
-    }
-
-    label {
-      font-weight: bold; /* Negrito nos textos */
-      color: #fff;
-    }
-
-    input {
-      padding: 8px;
-      margin: 5px 0;
-      width: 300px;
-      border: 1px solid #fff;
-      background-color: #222;
-      color: #fff;
-    }
-
-    button {
-      background-color: #ff0000;
-      color: #fff;
-      border: none;
-      padding: 10px 20px;
-      cursor: pointer;
-      font-weight: bold;
-    }
-
-    table {
-      margin-top: 20px;
-      border-collapse: collapse;
-      width: 80%;
-    }
-
-    th, td {
-      border: 1px solid #fff;
-      padding: 8px;
-      text-align: left;
-      font-weight: bold; /* tabela em negrito */
-      color: #fff;
     }
   </style>
 </head>
@@ -75,21 +34,10 @@
     <label for="localizacao">Localização:</label><br>
     <input type="text" id="localizacao" required><br>
 
-    <label for="telefone">Telefone (opcional):</label><br>
-    <input type="text" id="telefone" placeholder="(xx) xxxx-xxxx"><br><br>
+    <label for="telefone">Telefone:</label><br>
+    <input type="text" id="telefone"><br><br>
 
     <button type="submit">Enviar</button>
   </form>
-
-  <h3>Cadastros enviados:</h3>
-  <table id="tabelaDados">
-    <tr>
-      <th>Nome</th>
-      <th>Idade</th>
-      <th>Localização</th>
-      <th>Telefone</th>
-    </tr>
-  </table>
 </body>
 </html>
-
