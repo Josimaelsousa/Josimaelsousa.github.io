@@ -157,7 +157,7 @@
     <nav>
         <ul>
             <li><button onclick="location.reload()">Início</button></li>
-            <li><a href="#trending">Em alta</a></li>
+            <li><button onclick="mostrarEmAlta()">Em alta</button></li>
             <li><button onclick="window.location.href='inscricao.html'">Inscrição</button></li>
         </ul>
     </nav>
@@ -167,7 +167,7 @@
     <h2>Recomendados</h2>
     <div class="video-grid">
         <!-- Vídeos como antes -->
-        <div class="video-card">
+       <div class="video-card em-alta">
             <iframe src="https://www.youtube.com/embed/djV11Xbc914" title="a-ha - Take On Me" frameborder="0" allowfullscreen></iframe>
             <div class="info">
                 <h3>a-ha - Take On Me</h3>
@@ -183,7 +183,7 @@
             </div>
         </div>
 
-        <div class="video-card">
+       <div class="video-card em-alta">
             <iframe src="https://www.youtube.com/embed/dtYKIBAF7n8" title="Davi Sacer - Venha o Teu Reino" frameborder="0" allowfullscreen></iframe>
             <div class="info">
                 <h3>Davi Sacer - Venha o Teu Reino</h3>
@@ -215,7 +215,7 @@
             </div>
         </div>
 
-        <div class="video-card">
+        <div class="video-card em-alta">
             <iframe src="https://www.youtube.com/embed/129kuDCQtHs" title="Bruce Springsteen - Dancing In the Dark" frameborder="0" allowfullscreen></iframe>
             <div class="info">
                 <h3>Bruce Springsteen - Dancing In the Dark</h3>
@@ -240,8 +240,15 @@ searchInput.addEventListener('input', () => {
         card.style.display = title.includes(filter) ? 'block' : 'none';
     });
 });
+    function mostrarEmAlta() {
+    videoCards.forEach(card => {
+        card.style.display = card.classList.contains('em-alta') ? 'block' : 'none';
+    });
+}
+
 </script>
 
 </body>
 </html>
+
 
