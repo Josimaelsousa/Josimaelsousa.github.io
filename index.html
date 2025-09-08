@@ -20,12 +20,39 @@
         display: flex;
         align-items: center;
         justify-content: space-between;
+        flex-wrap: wrap; /* permite que os itens quebrem linha quando a tela for pequena */
     }
 
     header .logo {
         font-size: 1.5rem;
         font-weight: bold;
         margin-right: 15px;
+        flex-shrink: 0; /* impede que encolha demais */
+    }
+
+    .search-bar {
+        display: flex;
+        align-items: center;
+        flex-basis: 100%; /* ocupa linha inteira em telas pequenas */
+        justify-content: center; /* centraliza horizontalmente */
+        margin-top: 0.5rem;
+    }
+
+    .search-bar input {
+        padding: 0.5rem;
+        font-size: 1rem;
+        border: 1px solid #ccc;
+        border-radius: 3px;
+        width: 100%; /* ocupa toda a linha em telas pequenas */
+        max-width: 300px; /* não fica gigante em telas grandes */
+        margin-right: 5px;
+    }
+
+    nav {
+        flex-basis: 100%; /* ocupa linha inteira em telas pequenas */
+        display: flex;
+        justify-content: center; /* centraliza horizontalmente */
+        margin-top: 0.5rem;
     }
 
     header nav ul {
@@ -33,6 +60,8 @@
         display: flex;
         margin: 0;
         padding: 0;
+        flex-wrap: wrap; /* permite quebrar itens se necessário */
+        justify-content: center;
     }
 
     header nav ul li {
@@ -54,19 +83,6 @@
     header nav ul li button:hover,
     header nav ul li a:hover {
         text-decoration: underline;
-    }
-
-    .search-bar {
-        display: flex;
-        align-items: center;
-    }
-
-    .search-bar input {
-        padding: 0.5rem;
-        font-size: 1rem;
-        border: 1px solid #ccc;
-        border-radius: 3px;
-        margin-right: 5px;
     }
 
     main {
@@ -117,6 +133,18 @@
     footer p {
         margin: 0;
     }
+
+    /* Ajustes para telas pequenas */
+    @media (max-width: 480px) {
+        header nav ul li {
+            margin: 5px;
+        }
+
+        header nav ul li a,
+        header nav ul li button {
+            font-size: 0.9rem;
+        }
+    }
 </style>
 </head>
 <body>
@@ -138,7 +166,7 @@
 <main>
     <h2>Recomendados</h2>
     <div class="video-grid">
-        <!-- Vídeo 1 -->
+        <!-- Vídeos como antes -->
         <div class="video-card">
             <iframe src="https://www.youtube.com/embed/djV11Xbc914" title="a-ha - Take On Me" frameborder="0" allowfullscreen></iframe>
             <div class="info">
@@ -147,7 +175,6 @@
             </div>
         </div>
 
-        <!-- Vídeo 2 -->
         <div class="video-card">
             <iframe src="https://www.youtube.com/embed/VcjzHMhBtf0" title="Journey - Don't Stop Believin'" frameborder="0" allowfullscreen></iframe>
             <div class="info">
@@ -156,7 +183,6 @@
             </div>
         </div>
 
-        <!-- Vídeo 3 -->
         <div class="video-card">
             <iframe src="https://www.youtube.com/embed/dtYKIBAF7n8" title="Davi Sacer - Venha o Teu Reino" frameborder="0" allowfullscreen></iframe>
             <div class="info">
@@ -165,7 +191,6 @@
             </div>
         </div>
 
-        <!-- Vídeo 4 -->
         <div class="video-card">
             <iframe src="https://www.youtube.com/embed/XXYlFuWEuKI" title="The Weeknd" frameborder="0" allowfullscreen></iframe>
             <div class="info">
@@ -174,7 +199,6 @@
             </div>
         </div>
 
-        <!-- Vídeo 5 -->
         <div class="video-card">
             <iframe src="https://www.youtube.com/embed/mNEUkkoUoIA" title="OneRepublic - I Ain't Worried" frameborder="0" allowfullscreen></iframe>
             <div class="info">
@@ -183,7 +207,6 @@
             </div>
         </div>
 
-        <!-- Vídeo 6 -->
         <div class="video-card">
             <iframe src="https://www.youtube.com/embed/4fndeDfaWCg" title="Backstreet Boys - I Want It That Way" frameborder="0" allowfullscreen></iframe>
             <div class="info">
@@ -192,7 +215,6 @@
             </div>
         </div>
 
-        <!-- Vídeo 7 -->
         <div class="video-card">
             <iframe src="https://www.youtube.com/embed/129kuDCQtHs" title="Bruce Springsteen - Dancing In the Dark" frameborder="0" allowfullscreen></iframe>
             <div class="info">
@@ -222,4 +244,3 @@ searchInput.addEventListener('input', () => {
 
 </body>
 </html>
-
