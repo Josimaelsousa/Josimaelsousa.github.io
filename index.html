@@ -1,134 +1,225 @@
+// index.html
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <title>Mael Uber</title>
-
-  <!-- Faz o site se adaptar ao tamanho da tela de qualquer dispositivo -->
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <!-- Importa o CSS do Leaflet (mapa) -->
-  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
-  <style>
-    /* Remove margens e define altura e largura total do body e html */
-    body, html {
-      margin: 0;
-      padding: 0;
-      height: 100%;
-      width: 100%;
-      display: flex;
-      flex-direction: column; /* organiza header, mapa e footer em coluna */
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Clone simplificado do YouTube para estudos">
+<title>Maeltube</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #000;
+        color: #fff;
     }
 
-    /* Estilo do cabeçalho */
     header {
-      background: #0e0f0f; /* cor de fundo preto escuro */
-      color: white; /* cor do texto */
-      text-align: center;
-      padding: 12px;
-      font-size: 20px;
-      font-weight: bold;
+        background-color: #ff0000;
+        padding: 1rem 2rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
     }
 
-    /* O mapa ocupa todo o espaço disponível entre header e footer */
-    #map {
-      flex: 1;
-      width: 100%;
+    header .logo {
+        font-size: 1.5rem;
+        font-weight: bold;
+        margin-right: 15px;
     }
 
-    /* Estilo do rodapé */
+    header nav ul {
+        list-style: none;
+        display: flex;
+        margin: 0;
+        padding: 0;
+    }
+
+    header nav ul li {
+        margin: 0 10px;
+    }
+
+    header nav ul li a,
+    header nav ul li button {
+        color: white;
+        text-decoration: none;
+        font-weight: bold;
+        background: none;
+        border: none;
+        cursor: pointer;
+        font-size: 1rem;
+        padding: 0;
+    }
+
+    header nav ul li button:hover,
+    header nav ul li a:hover {
+        text-decoration: underline;
+    }
+
+    .search-bar {
+        display: flex;
+        align-items: center;
+    }
+
+    .search-bar input {
+        padding: 0.5rem;
+        font-size: 1rem;
+        border: 1px solid #ccc;
+        border-radius: 3px;
+        margin-right: 5px;
+    }
+
+    main {
+        padding: 2rem;
+    }
+
+    .video-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 1.5rem;
+    }
+
+    .video-card {
+        background-color: #dad8d8;
+        border-radius: 5px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+        color: #000;
+    }
+
+    .video-card iframe {
+        width: 100%;
+        height: 200px;
+    }
+
+    .video-card .info {
+        padding: 1rem;
+    }
+
+    .video-card .info h3 {
+        margin: 0 0 0.5rem 0;
+        font-size: 1.1rem;
+    }
+
+    .video-card .info p {
+        margin: 0;
+        font-size: 0.9rem;
+    }
+
     footer {
-      text-align: center;
-      padding: 10px;
-      background: #f0f0f0; /* cor clara de fundo */
+        background-color: #333;
+        color: #fff;
+        text-align: center;
+        padding: 1rem 0;
+        margin-top: 2rem;
     }
 
-    /* Estilo do botão */
-    button {
-      background: #1e88e5; /* cor azul */
-      color: white;
-      border: none;
-      padding: 12px 20px;
-      font-size: 16px;
-      border-radius: 8px;
-      cursor: pointer;
+    footer p {
+        margin: 0;
     }
-
-    /* Efeito ao passar o mouse sobre o botão */
-    button:hover {
-      background: #1568b4; /* azul mais escuro */
-    }
-  </style>
+</style>
 </head>
 <body>
-  <!-- Cabeçalho do app -->
-  <header>Mael Uber</header>
 
-  <!-- Div onde o mapa será renderizado -->
-  <div id="map"></div>
+<header>
+    <div class="logo">Maeltube</div>
+    <div class="search-bar">
+        <input type="text" id="searchInput" placeholder="Pesquisar...">
+    </div>
+    <nav>
+        <ul>
+            <li><a href="#home">Início</a></li>
+            <li><a href="#trending">Em alta</a></li>
+            <li><button onclick="window.location.href='inscricao.html'">Inscrição</button></li>
+        </ul>
+    </nav>
+</header>
 
-  <!-- Rodapé com botão de iniciar corrida -->
-  <footer>
-    <button onclick="iniciarCorrida()">Iniciar Corrida</button>
-  </footer>
+<main>
+    <h2>Recomendados</h2>
+    <div class="video-grid">
+        <!-- Vídeo 1 -->
+        <div class="video-card">
+            <iframe src="https://www.youtube.com/embed/XXYlFuWEuKI" title="The Weeknd" frameborder="0" allowfullscreen></iframe>
+            <div class="info">
+                <h3>The Weeknd</h3>
+                <p>Maelvideos</p>
+            </div>
+        </div>
 
-  <!-- Importa o JS do Leaflet -->
-  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
-  <script>
-    // Cria o mapa centralizado inicialmente nas coordenadas [0,0] com zoom 13
-    const map = L.map('map').setView([0, 0], 13);
+        <!-- Vídeo 2 -->
+        <div class="video-card">
+            <iframe src="https://www.youtube.com/embed/VcjzHMhBtf0" title="Journey - Don't Stop Believin'" frameborder="0" allowfullscreen></iframe>
+            <div class="info">
+                <h3>Journey - Don't Stop Believin'</h3>
+                <p>Maelvideos</p>
+            </div>
+        </div>
 
-    // Adiciona camada de mapa do OpenStreetMap
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      attribution: '© OpenStreetMap contributors'
-    }).addTo(map);
+        <!-- Vídeo 3 -->
+        <div class="video-card">
+            <iframe src="https://www.youtube.com/embed/dtYKIBAF7n8" title="Davi Sacer - Venha o Teu Reino" frameborder="0" allowfullscreen></iframe>
+            <div class="info">
+                <h3>Davi Sacer - Venha o Teu Reino</h3>
+                <p>Maelvideos</p>
+            </div>
+        </div>
 
-    // Variáveis para guardar origem, destino e rota
-    let origem, destino, rota;
+        <!-- Vídeo 4 -->
+        <div class="video-card">
+            <iframe src="https://www.youtube.com/embed/9EHAo6rEuas" title="Bryan Adams - Please Forgive Me" frameborder="0" allowfullscreen></iframe>
+            <div class="info">
+                <h3>Bryan Adams - Please Forgive Me</h3>
+                <p>Maelvideos</p>
+            </div>
+        </div>
 
-    // Pega a localização atual do usuário
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(pos => {
-        origem = [pos.coords.latitude, pos.coords.longitude]; // latitude e longitude
-        map.setView(origem, 15); // centraliza mapa na localização
-        L.marker(origem).addTo(map).bindPopup("Você está aqui!").openPopup(); // adiciona marcador
-      });
-    }
+        <!-- Vídeo 5 -->
+        <div class="video-card">
+            <iframe src="https://www.youtube.com/embed/mNEUkkoUoIA" title="OneRepublic - I Ain't Worried" frameborder="0" allowfullscreen></iframe>
+            <div class="info">
+                <h3>OneRepublic - I Ain't Worried</h3>
+                <p>Maelvideos</p>
+            </div>
+        </div>
 
-    // Evento de clique no mapa para escolher o destino
-    map.on('click', async (e) => {
-      destino = [e.latlng.lat, e.latlng.lng]; // pega coordenadas do clique
-      L.marker(destino).addTo(map).bindPopup("Destino").openPopup(); // adiciona marcador no destino
+        <!-- Vídeo 6 -->
+        <div class="video-card">
+            <iframe src="https://www.youtube.com/embed/4fndeDfaWCg" title="Backstreet Boys - I Want It That Way" frameborder="0" allowfullscreen></iframe>
+            <div class="info">
+                <h3>Backstreet Boys - I Want It That Way</h3>
+                <p>Maelvideos</p>
+            </div>
+        </div>
 
-      // Se origem e destino estiverem definidos, traça a rota
-      if (origem && destino) {
-        // URL da API OSRM para calcular rota de carro
-        const url = `https://router.project-osrm.org/route/v1/driving/${origem[1]},${origem[0]};${destino[1]},${destino[0]}?overview=full&geometries=geojson`;
-        const response = await fetch(url); // faz requisição para API
-        const data = await response.json(); // transforma resposta em JSON
-        const coords = data.routes[0].geometry.coordinates.map(c => [c[1], c[0]]); // ajusta coordenadas para Leaflet
+        <!-- Vídeo 7 -->
+        <div class="video-card">
+            <iframe src="https://www.youtube.com/embed/129kuDCQtHs" title="Bruce Springsteen - Dancing In the Dark" frameborder="0" allowfullscreen></iframe>
+            <div class="info">
+                <h3>Bruce Springsteen - Dancing In the Dark</h3>
+                <p>Maelvideos</p>
+            </div>
+        </div>
+    </div>
+</main>
 
-        // Remove rota antiga, se existir
-        if (rota) map.removeLayer(rota);
+<footer>
+    <p>&copy; 2025 Maeltube. Todos os direitos reservados.</p>
+</footer>
 
-        // Desenha nova rota no mapa
-        rota = L.polyline(coords, {color: 'blue'}).addTo(map);
+<script>
+const searchInput = document.getElementById('searchInput');
+const videoCards = document.querySelectorAll('.video-card');
 
-        // Ajusta o zoom para caber toda a rota na tela
-        map.fitBounds(rota.getBounds());
-      }
+searchInput.addEventListener('input', () => {
+    const filter = searchInput.value.toLowerCase();
+    videoCards.forEach(card => {
+        const title = card.querySelector('h3').textContent.toLowerCase();
+        card.style.display = title.includes(filter) ? 'block' : 'none';
     });
+});
+</script>
 
-    // Função chamada ao clicar no botão "Iniciar Corrida"
-    function iniciarCorrida() {
-      if (origem && destino) {
-        // Mostra alerta com origem e destino
-        alert("🚖 Corrida iniciada!\nOrigem: " + origem + "\nDestino: " + destino);
-      } else {
-        // Caso usuário não tenha escolhido destino ainda
-        alert("⚠️ Escolha um destino clicando no mapa antes de iniciar a corrida!");
-      }
-    }
-  </script>
 </body>
 </html>
