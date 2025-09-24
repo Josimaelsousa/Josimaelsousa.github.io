@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Controle ESP32</title>
+
+  <!-- Firebase -->
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin-top: 50px;
+      background-color: #000;
+      color: #fff;
+    }
+    button {
+      font-size: 20px;
+      padding: 15px 30px;
+      margin: 10px;
+      cursor: pointer;
+      border: none;
+      border-radius: 5px;
+    }
+    .on { background-color: green; color: #fff; }
+    .off { background-color: red; color: #fff; }
+  </style>
+</head>
+<body>
+  <h1>Controle ESP32</h1>
+  <button class="on" onclick="ligarLED()">LED ON</button>
+  <button class="off" onclick="desligarLED()">LED OFF</button>
+
+  <script>
+    // Inicializa o Firebase (dados do seu App Web)
+    firebase.initializeApp({
+      apiKey: "AIzaSyCv22t04FBxFN4gYs7BbAxrGHnVWHFHbdA",
+      authDomain: "esp32-controle-af9b2.firebaseapp.com",
+      databaseURL: "https://esp32-controle-af9b2-default-rtdb.firebaseio.com",
+      projectId: "esp32-controle-af9b2",
+      storageBucket: "esp32-controle-af9b2.firebasestorage.app",
+      messagingSenderId: "701284205164",
+      appId: "1:701284205164:web:aa1d58c700e6708e454e49"
+    });
+
+    const database = firebase.database();
+
+    // Funções para controlar o LED
+    function ligarLED() {
+      database.ref('controle/led').set(1);
+    }
+
+    function desligarLED() {
+      database.ref('controle/led').set(0);
+    }
+  </script>
+</body>
+</html>
