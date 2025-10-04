@@ -1,256 +1,60 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Clone simplificado do YouTube para estudos">
-<title>Maeltube</title>
-<style>
-    body {
-        font-family: Arial, sans-serif;
-        margin: 0;
-        padding: 0;
-        background-color: #000;
-        color: #fff;
-    }
-
-    header {
-        background-color: #ff0000;
-        padding: 1rem 2rem;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        flex-wrap: wrap; /* permite que os itens quebrem linha quando a tela for pequena */
-    }
-
-    header .logo {
-        font-size: 1.5rem;
-        font-weight: bold;
-        margin-right: 15px;
-        flex-shrink: 0; /* impede que encolha demais */
-    }
-
-    .search-bar {
-        display: flex;
-        align-items: center;
-        flex-basis: 100%; /* ocupa linha inteira em telas pequenas */
-        justify-content: center; /* centraliza horizontalmente */
-        margin-top: 0.5rem;
-    }
-
-    .search-bar input {
-        padding: 0.5rem;
-        font-size: 1rem;
-        border: 1px solid #ccc;
-        border-radius: 3px;
-        width: 100%; /* ocupa toda a linha em telas pequenas */
-        max-width: 300px; /* não fica gigante em telas grandes */
-        margin-right: 5px;
-    }
-
-    nav {
-        flex-basis: 100%; /* ocupa linha inteira em telas pequenas */
-        display: flex;
-        justify-content: center; /* centraliza horizontalmente */
-        margin-top: 0.5rem;
-    }
-
-    header nav ul {
-        list-style: none;
-        display: flex;
-        margin: 0;
-        padding: 0;
-        flex-wrap: wrap; /* permite quebrar itens se necessário */
-        justify-content: center;
-    }
-
-    header nav ul li {
-        margin: 0 10px;
-    }
-
-    header nav ul li a,
-    header nav ul li button {
-        color: white;
-        text-decoration: none;
-        font-weight: bold;
-        background: none;
-        border: none;
-        cursor: pointer;
-        font-size: 1rem;
-        padding: 0;
-    }
-
-    header nav ul li button:hover,
-    header nav ul li a:hover {
-        text-decoration: underline;
-    }
-
-    main {
-        padding: 2rem;
-    }
-
-    .video-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-        gap: 1.5rem;
-    }
-
-    .video-card {
-        background-color: #dad8d8;
-        border-radius: 5px;
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-        overflow: hidden;
-        color: #000;
-    }
-
-    .video-card iframe {
-        width: 100%;
-        height: 200px;
-    }
-
-    .video-card .info {
-        padding: 1rem;
-    }
-
-    .video-card .info h3 {
-        margin: 0 0 0.5rem 0;
-        font-size: 1.1rem;
-    }
-
-    .video-card .info p {
-        margin: 0;
-        font-size: 0.9rem;
-    }
-
-    footer {
-        background-color: #333;
-        color: #fff;
-        text-align: center;
-        padding: 1rem 0;
-        margin-top: 2rem;
-    }
-
-    footer p {
-        margin: 0;
-    }
-
-    /* Ajustes para telas pequenas */
-    @media (max-width: 480px) {
-        header nav ul li {
-            margin: 5px;
-        }
-
-        header nav ul li a,
-        header nav ul li button {
-            font-size: 0.9rem;
-        }
-    }
-</style>
+  <meta charset="UTF-8">
+  <title>Controle Remoto MaelCar</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body { text-align:center; font-family: Arial; background:#000; color:#fff; margin-top:50px; }
+    button { width:80px; height:80px; font-size:20px; margin:10px; border-radius:10px; cursor:pointer; }
+    .up { background:green; }
+    .down { background:blue; }
+    .left { background:orange; }
+    .right { background:purple; }
+    .stop { background:red; }
+    .row { display:flex; justify-content:center; align-items:center; }
+  </style>
 </head>
 <body>
+  <h1>Controle Remoto MaelCar</h1>
 
-<header>
-    <div class="logo">Maeltube</div>
-    <div class="search-bar">
-        <input type="text" id="searchInput" placeholder="Pesquisar...">
-    </div>
-    <nav>
-        <ul>
-            <li><button onclick="location.reload()">Início</button></li>
-            <li><button onclick="mostrarEmAlta()">Em alta</button></li>
-            <li><button onclick="window.location.href='inscricao.html'">Inscrição</button></li>
-        </ul>
-    </nav>
-</header>
+  <div class="row">
+    <button class="up" onclick="sendCmd('F')">↑</button>
+  </div>
+  <div class="row">
+    <button class="left" onclick="sendCmd('L')">←</button>
+    <button class="stop" onclick="sendCmd('S')">S</button>
+    <button class="right" onclick="sendCmd('R')">→</button>
+  </div>
+  <div class="row">
+    <button class="down" onclick="sendCmd('B')">↓</button>
+  </div>
 
-<main>
-    <h2>Recomendados</h2>
-    <div class="video-grid">
-        <!-- Vídeos como antes -->
-        <div class="video-card">
-            <iframe src="https://www.youtube.com/embed/djV11Xbc914" title="a-ha - Take On Me" frameborder="0" allowfullscreen></iframe>
-            <div class="info">
-                <h3>a-ha - Take On Me</h3>
-                <p>Maelvideos</p>
-            </div>
-        </div>
+  <h2>Mael Tecnologias</h2>
 
-        <div class="video-card em-alta">
-            <iframe src="https://www.youtube.com/embed/VcjzHMhBtf0" title="Journey - Don't Stop Believin'" frameborder="0" allowfullscreen></iframe>
-            <div class="info">
-                <h3>Journey - Don't Stop Believin'</h3>
-                <p>Maelvideos</p>
-            </div>
-        </div>
+  <script type="module">
+    // --- Firebase ---
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-app.js";
+    import { getDatabase, ref, set } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-database.js";
 
-       <div class="video-card em-alta">
-            <iframe src="https://www.youtube.com/embed/dtYKIBAF7n8" title="Davi Sacer - Venha o Teu Reino" frameborder="0" allowfullscreen></iframe>
-            <div class="info">
-                <h3>Davi Sacer - Venha o Teu Reino</h3>
-                <p>Maelvideos</p>
-            </div>
-        </div>
+    const firebaseConfig = {
+      apiKey: "AIzaSyBl6FfYGi2nzy1aLXWf7ZlL08lcFpYiNu4",
+      authDomain: "maelcarro-7b99b.firebaseapp.com",
+      databaseURL: "https://maelcarro-7b99b-default-rtdb.firebaseio.com",
+      projectId: "maelcarro-7b99b",
+      storageBucket: "maelcarro-7b99b.firebasestorage.app",
+      messagingSenderId: "861995467419",
+      appId: "1:861995467419:web:4786aa2daa4930a2bfbc3e"
+    };
 
-        <div class="video-card">
-            <iframe src="https://www.youtube.com/embed/XXYlFuWEuKI" title="The Weeknd" frameborder="0" allowfullscreen></iframe>
-            <div class="info">
-                <h3>The Weeknd</h3>
-                <p>Maelvideos</p>
-            </div>
-        </div>
+    const app = initializeApp(firebaseConfig);
+    const db = getDatabase(app);
 
-        <div class="video-card">
-            <iframe src="https://www.youtube.com/embed/mNEUkkoUoIA" title="OneRepublic - I Ain't Worried" frameborder="0" allowfullscreen></iframe>
-            <div class="info">
-                <h3>OneRepublic - I Ain't Worried</h3>
-                <p>Maelvideos</p>
-            </div>
-        </div>
-
-        <div class="video-card em-alta">
-            <iframe src="https://www.youtube.com/embed/4fndeDfaWCg" title="Backstreet Boys - I Want It That Way" frameborder="0" allowfullscreen></iframe>
-            <div class="info">
-                <h3>Backstreet Boys - I Want It That Way</h3>
-                <p>Maelvideos</p>
-            </div>
-        </div>
-
-        <div class="video-card em-alta">
-            <iframe src="https://www.youtube.com/embed/129kuDCQtHs" title="Bruce Springsteen - Dancing In the Dark" frameborder="0" allowfullscreen></iframe>
-            <div class="info">
-                <h3>Bruce Springsteen - Dancing In the Dark</h3>
-                <p>Maelvideos</p>
-            </div>
-        </div>
-    </div>
-</main>
-
-<footer>
-    <p>&copy; 2025 Maeltube. Todos os direitos reservados.</p>
-</footer>
-
-<script>
-const searchInput = document.getElementById('searchInput');
-const videoCards = document.querySelectorAll('.video-card');
-
-searchInput.addEventListener('input', () => {
-    const filter = searchInput.value.toLowerCase();
-    videoCards.forEach(card => {
-        const title = card.querySelector('h3').textContent.toLowerCase();
-        card.style.display = title.includes(filter) ? 'block' : 'none';
-    });
-});
-    function mostrarEmAlta() {
-    videoCards.forEach(card => {
-        card.style.display = card.classList.contains('em-alta') ? 'block' : 'none';
-    });
-}
-
-</script>
-
+    function sendCmd(cmd) {
+      set(ref(db, 'carrinhoMael/comando'), cmd)
+        .then(() => console.log("Comando enviado:", cmd))
+        .catch((error) => console.error("Erro ao enviar:", error));
+    }
+  </script>
 </body>
 </html>
-
-
-
-
